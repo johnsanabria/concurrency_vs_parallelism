@@ -3,6 +3,20 @@
 En este repositorio veremos un ejemplo muy básico respecto a como se puede percibir la concurrencia y el paralelismo en el lenguaje Python.
 Así mismo, veremos aquellas estructuras o librerías que permiten llevar a cabo la ejecución o concurrente o paralela de un programa escrito en Python.
 
+Para probar el código se debe ejecutar lo siguiente:
+
+**Versión concurrente** 
+
+```
+python3 FiboWorkerThread
+```
+
+**Versión paralela**
+
+```
+python3 FiboWorkerProcess
+```
+
 Este código se deriva de los siguientes sitios:
 
 - [Python Multithreading and Multiprocessing Tutorial](https://www.toptal.com/python/beginners-guide-to-concurrency-and-parallelism-in-python)
