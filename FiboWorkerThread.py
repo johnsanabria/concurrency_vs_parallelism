@@ -8,20 +8,20 @@
 from threading import Thread
 from fibonacci import fibo
 from time import time
-from queue import Queue
 import multiprocessing
 import sys
 
 class FiboWorker(Thread):
-  def __init__(self, n):
+  def __init__(self, n,tid):
     Thread.__init__(self)
     self.n = n
+    self.tid = tid
 
   def run(self):
-    print(f"Fibonacci de {self.n} es {fibo(self.n)}")
+    print(f"[{self.tid}] Fibonacci de {self.n} es {fibo(self.n)}")
 
 def main():
-  max_fibo = 35
+  max_fibo = 33
   if len(sys.argv) != 1:
     max_fibo = int(sys.argv[1])
   num_cpus = multiprocessing.cpu_count() # CPUs disponibles
@@ -30,7 +30,7 @@ def main():
   ts = time() # se toma tiempo 
   for x in range(num_cpus): # Ciclo para crear trabajadores
     print(f"Trabajador {x} comienza")
-    worker = FiboWorker(max_fibo)
+    worker = FiboWorker(max_fibo,x)
     worker.start()
     hilos.append(worker)
 

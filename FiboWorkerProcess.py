@@ -11,15 +11,16 @@ import multiprocessing
 import sys
 
 class FiboWorker(multiprocessing.Process):
-  def __init__(self, n):
+  def __init__(self, n, pid):
     multiprocessing.Process.__init__(self)
     self.n = n
+    self._pid = pid
 
   def run(self):
-    print(f"Fibonacci de {self.n} es {fibo(self.n)}")
+    print(f"[{self._pid}] Fibonacci de {self.n} es {fibo(self.n)}")
 
 def main():
-  max_fibo = 35
+  max_fibo = 33
   if len(sys.argv) != 1:
     max_fibo = int(sys.argv[1])
   num_cpus = multiprocessing.cpu_count() # CPUs disponibles
@@ -28,7 +29,7 @@ def main():
   ts = time() # se toma tiempo 
   for x in range(num_cpus): # Ciclo para crear trabajadores
     print(f"Trabajador {x} comienza")
-    worker = FiboWorker(max_fibo)
+    worker = FiboWorker(max_fibo,x)
     worker.start()
     procesos.append(worker)
 
